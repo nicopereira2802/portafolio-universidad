@@ -12,42 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pedidos.services.ClienteService;
-import com.example.pedidos.models.Cliente;
-
+import com.example.pedidos.services.ContenedorService;
+import com.example.pedidos.models.Contenedor;
 
 @RestController
-@RequestMapping("/pedidos/clientes")
-public class ClienteController {
+@RequestMapping("/pedidos/contenedores")
+public class ContenedorController {
     
     @Autowired
-    private ClienteService clienteService;
+    private ContenedorService contenedorService;
 
     @GetMapping
-    public List<Cliente> listar(){
-        return clienteService.obtenerTodos();
+    public List<Contenedor> listar(){
+        return contenedorService.obtenerTodos();
     }
 
     @GetMapping("/{id}")
-    public Cliente listarPorId(@PathVariable Long id){
-        return clienteService.obtenerPorId(id);
+    public Contenedor listarPorId(@PathVariable Long id){
+        return contenedorService.obtenerPorId(id);
     }
 
     @PostMapping
-    public Cliente crear(@RequestBody Cliente cliente){
-        return clienteService.crear(cliente);
+    public Contenedor crear(@RequestBody Contenedor contenedor){
+        return contenedorService.crear(contenedor);
     }
 
     @PutMapping("/{id}")
-    public Cliente actualizar(@PathVariable Long id, @RequestBody Cliente cliente){
-        cliente.setId(id);
-        return clienteService.actualizar(id, cliente);
+    public Contenedor actualizar(@PathVariable Long id, @RequestBody Contenedor contenedor){
+        contenedor.setId(id);
+        return contenedorService.actualizar(id, contenedor);
     }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id){
-        clienteService.eliminar(id);
+        contenedorService.eliminar(id);
     }
-
-
 }

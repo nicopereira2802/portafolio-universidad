@@ -12,42 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pedidos.services.ClienteService;
-import com.example.pedidos.models.Cliente;
-
+import com.example.pedidos.models.Deposito;
+import com.example.pedidos.services.DepositoService;
 
 @RestController
-@RequestMapping("/pedidos/clientes")
-public class ClienteController {
+@RequestMapping("/pedidos/depositos")
+public class DepositoController {
     
     @Autowired
-    private ClienteService clienteService;
+    private DepositoService depositoService;
 
     @GetMapping
-    public List<Cliente> listar(){
-        return clienteService.obtenerTodos();
+    public List<Deposito> listar(){
+        return depositoService.obtenerTodos();
     }
 
     @GetMapping("/{id}")
-    public Cliente listarPorId(@PathVariable Long id){
-        return clienteService.obtenerPorId(id);
+    public Deposito listarPorId(@PathVariable Long id){
+        return depositoService.obtenerPorId(id);
     }
 
     @PostMapping
-    public Cliente crear(@RequestBody Cliente cliente){
-        return clienteService.crear(cliente);
+    public Deposito crear(@RequestBody Deposito deposito){
+        return depositoService.crear(deposito);
     }
 
     @PutMapping("/{id}")
-    public Cliente actualizar(@PathVariable Long id, @RequestBody Cliente cliente){
-        cliente.setId(id);
-        return clienteService.actualizar(id, cliente);
+    public Deposito actualizar(@PathVariable Long id, @RequestBody Deposito deposito){
+        deposito.setId(id);
+        return depositoService.actualizar(id, deposito);
     }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id){
-        clienteService.eliminar(id);
+        depositoService.eliminar(id);
     }
-
-
 }
